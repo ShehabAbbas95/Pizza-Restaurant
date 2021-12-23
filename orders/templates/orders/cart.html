@@ -1,0 +1,74 @@
+{% extends "orders/base.html" %}
+{%block title%}
+  Cart
+{%endblock%}
+{%block body%}
+<script type="text/javascript">
+
+
+  function hide(name){
+    if( name == 'Dinner'){
+      document.getElementById('top').style.diplay = "none";
+    };
+
+  };
+
+</script>
+<form class=""  method="post">
+
+  {% csrf_token %}
+<div class="tab">
+
+  <div class="">
+    <p><b>We Are Happy To Serve You :D </b></p>
+  </div>
+
+
+
+    <p>Your Order </p>
+      <table class="table table-borderd">
+        <tr>
+          <td>Plate</td>
+          <td>Size</td>
+          <td>Type</td>
+          <td id="top">Topping</td>
+          <td id="top">2nd-Topping</td>
+          <td id="top">3rd-Topping</td>
+          <td>Pasta & Salads</td>
+          <td>Subs</td>
+          
+          <td>Price</td>
+          <td></td>
+        </tr>
+        <tr>
+
+        </tr>
+        {%for i in cart%}
+          <tr>
+          <td>{{i.name}}</td>
+          <td>{{i.size}}</td>
+          <td>{{i.type}}</td>
+          <td id="top">{{i.topping}}</td>
+          <td id="top">{{i.second_topping}}</td>
+          <td id="top">{{i.third_topping}}</td>
+          <td>{{i.pasta_salads}}</td>
+          <td>{{i.subs}}</td>
+          <td>{{i.price}}</td>
+          <td><a href="{% url 'remove' i.id %}"><button type="button" class="r">Remove Item</button></a></td>
+          <td><a href="{% url 'edit' i.id %}"><button type="button" class="r">Edit Item</button></a></td>
+          </tr>
+        {% endfor %}
+
+      </table>
+
+
+        <p style="font-size:50;"><b> {{cost}}</b>  </p>
+
+
+    <button type="submit" name="button">Place Order</button>
+    <a href="{% url 'removeall' %}"><button type="button" class="m">Empty Cart</button></a>
+    <a href="{%url 'index'%}"><button type="button" class="m">Menu</button></a>
+</div>
+
+</form>
+{% endblock %}

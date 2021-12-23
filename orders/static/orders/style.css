@@ -1,0 +1,82 @@
+.tab {
+  text-align: center;
+  font-size: 40;
+  color: black;
+
+  margin-top:5%;
+}
+body{
+  background-image: url('images/pizza.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.top{
+  color: blue;
+  font-style:italic;
+  font-weight: bolder;
+  font-size: 32;
+  text-align: left;
+  margin-left: 2%;
+}
+.table-condensed{
+  color:blue;
+
+  font-size: 45;
+
+}
+.x{
+  text-align:center;
+  font-size:32;
+
+
+}
+.y{
+  margin-top:1%;
+}
+
+select{
+  background:#3498db;
+  font-size:30;
+  text-align: center;
+  color: black;
+
+}
+.m{
+  color: black;
+  background: green;
+  font-size: 32;
+  border-radius: 70%;
+}
+h1{
+  font-size: 70;
+  font-weight:600;
+  background: grey;
+}
+.r{
+  color: black;
+
+  font-size: 16;
+  border-radius: 80%;
+}
+input{
+  background: #3498db;
+  width: 200;
+  height: 40;
+  font-size: 12;
+  color: black;
+  text-align:center;
+}
+.table-borderd{
+
+  text-align: center;
+  font-weight: bolder;
+  font-size: 24;
+  color: black;
+  margin-top:5%;
+}
+.alert-danger{
+  text-align: center;
+  font-size: 40;
+}

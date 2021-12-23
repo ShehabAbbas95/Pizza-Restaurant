@@ -1,0 +1,187 @@
+{% extends "orders/base.html" %}
+{%block title%}
+  HomePage
+{%endblock%}
+{%block body%}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger">
+          {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="tab">
+
+
+  <form class=""  method="POST">
+    {% csrf_token %}
+    <div class="">
+      <select   name="plate" onchange="show1(this)" >
+        <option value="" disabled selected >Choose Your Plate</option>
+        {% for i in plate %}
+          <option value="{{i.name}}" >{{i.name}}</option>
+        {% endfor %}
+      </select>
+      <script type="text/javascript">
+        function show1(select){
+
+          if(select.value== 'Regular'){
+            document.getElementById('typer').style.display = "block";
+            document.getElementById('types').style.display = "none";
+            document.getElementById('topping').style.display = "block";
+            document.getElementById('dinner').style.display = "none";
+          }
+          else if(select.value== 'Sicilian'){
+            document.getElementById('types').style.display = "block";
+            document.getElementById('topping').style.display = "block";
+            document.getElementById('typer').style.display = "none";
+            document.getElementById('dinner').style.display = "none";
+          }
+          else{
+            document.getElementById('dinner').style.display = "block";
+            document.getElementById('types').style.display = "none";
+            document.getElementById('typer').style.display = "none";
+            document.getElementById('topping').style.display = "none";
+            document.getElementById('2topping').style.display = "none";
+            document.getElementById('3topping').style.display = "none";
+          };
+        };
+      </script>
+    </div>
+<div class="">
+
+</div>
+
+<!select menu for regular pizza items>
+      <div id="typer" style="display: none;" >
+        <! Select Menu for regular type>
+        <select class="f"  name="typer" onchange="show(this)"  >
+          <option value="" disabled selected >Pizza-Filling</option>
+          {% for i in typer %}
+            <option value="{{i.name}}" >{{i.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+<!select menu for sicilian pizza items>
+      <div class="y" style="display: none;" id="types">
+        <! Select Menu for Sicilian type>
+        <select  class="f" name="types" onchange="show(this)" ">
+          <option value="" disabled selected >Pizza-Filling</option>
+          {% for i in types %}
+            <option value="{{i.name}}" >{{i.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+<!select menu for dinner items>
+      <div class="y" style="display: none;" id="dinner">
+        <select class="f" name="dinner" >
+          <option value="" disabled selected>Dinner-Type</option>
+          {% for i in dinner%}
+            <option value="{{i.name}}" >{{i.name}}</option>
+          {% endfor %}
+          </select>
+      </div>
+
+
+    <div>
+    <script type="text/javascript">
+      function show(select){
+
+        if(select.value== '2 toppings'){
+          document.getElementById('2topping').style.display = "block";
+          document.getElementById('3topping').style.display = "none";
+
+        }
+        else if(select.value== '3 toppings'){
+          document.getElementById('3topping').style.display = "block";
+          document.getElementById('2topping').style.display = "block";
+        }
+        else{
+          document.getElementById('2topping').style.display = "none";
+          document.getElementById('3topping').style.display = "none";
+        };
+      };
+    </script>
+  </div>
+
+
+<div class="y">
+  <select class="f" name="size" id= "size">
+    <option value="Size" disabled selected >Size</option>
+    <option value="small">Small</option>
+    <option value="large" >Large</option>
+  </select>
+</div>
+
+
+<div class="y" style="display: block" id=topping>
+    <select class="f" name="topping">
+      <option  disabled selected >Toppings</option>
+      {% for i in topping%}
+        <option value="{{i.name}}" name=topping>{{i.name}}</option>
+      {% endfor %}
+    </select>
+</div>
+
+<div id="2topping" style="display: none;">
+  <select class="f" name="2topping" >
+    <option value="" selected disabled>Select Your 2nd Topping</option>
+    {% for i in topping%}
+      <option value="{{i.name}}">{{i.name}}</option>
+    {% endfor %}
+  </select>
+</div>
+
+
+<div id="3topping" style="display: none;">
+  <select class="f" name="3topping" >
+    <option value="" selected disabled>Select Your 3rd Topping</option>
+    {% for i in topping%}
+      <option value="{{i.name}}">{{i.name}}</option>
+    {% endfor %}
+  </select>
+</div>
+<div class="">
+  <input type="number" min="1" name="item_number" placeholder="Number" >
+</div>
+
+
+
+
+
+<div class="y">
+  <select class="f" name="p_s">
+    <option value="Pasta & Salads">Pasta & Salads</option>
+    {% for i in p_s %}
+      <option value="{{i.n}}" >{{i.n}}</option>
+    {% endfor %}
+  </select>
+    <input type="number" min="1" name="p_s_number" value="1" placeholder="Number" >
+</div>
+
+
+
+  <div class="y">
+    <select class="f" name="subs">
+      <option value="Subs">Subs</option>
+      {% for i in subs%}
+        <option value="{{i.name}}" >{{i.name}}</option>
+      {% endfor %}
+      </select>
+      <input type="number" min="1" name="subs_number" value="1" placeholder="Number" >
+  </div>
+  <div class="">
+    <input type="text" name="comment"  placeholder="Comment"  style="background:white; width:auto; height:auto; font-size:32">
+  </div>
+
+  <div class="y">
+    <button class="m" type="submit" name="button">Add To Cart</button>
+    <a href="{% url 'cart' %}"><button type="button" class="m">Cart</button></a>
+  </div>
+
+  </form>
+</div>
+{% endblock %}

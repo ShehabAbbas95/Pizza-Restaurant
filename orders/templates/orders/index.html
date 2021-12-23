@@ -1,0 +1,126 @@
+{% extends "orders/base.html" %}
+{%block title%}
+  HomePage
+{%endblock%}
+{%block body%}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger">
+          {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="tab">
+
+
+  <div class="">
+    <h2>Logged In As "{{user.username}}"</h2>
+  </div>
+  <div class="x">
+    <a href="{% url 'addtocart'  %}"><button type="button" name="button">Order</button></a>
+  </div>
+      <h1>Regular</h1>
+
+
+
+      <table class="table table-condensed">
+        <tr>
+            <td>Item</td>
+            <td>Small</td>
+            <td>Large</td>
+
+          </tr>
+          {% for i in regular%}
+          <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.small}}</td>
+            <td>{{i.large}}</td>
+
+          </tr>
+          {% endfor %}
+      </table>
+
+      <h1>Sicilian</h1>
+      <table class="table table-condensed">
+        <tr>
+              <td>Item</td>
+              <td>Small</td>
+              <td>Large</td>
+
+        </tr>
+        {% for i in sicilian%}
+          <tr>
+              <td>{{i.name}}</td>
+              <td>{{i.small}}</td>
+              <td>{{i.large}}</td>
+
+          </tr>
+        {% endfor %}
+      </table>
+
+      <h1>Toppings</h1>
+      <div class="top">
+            {% for i in top%}
+                  <li>{{i.name}}</li>
+            {% endfor %}
+      </div>
+
+      <h1>Subs</h1>
+      <table class="table table-condensed">
+        <tr>
+              <td>Item</td>
+              <td>Small</td>
+              <td>Large</td>
+
+        </tr>
+        {% for i in subs%}
+          <tr>
+              <td>{{i.name}}</td>
+              <td>{{i.small}}</td>
+              <td>{{i.large}}</td>
+
+          </tr>
+        {% endfor %}
+      </table>
+      <h1>Pasta & Salads</h1>
+      <table class="table table-condensed">
+        <tr>
+              <td>Item</td>
+              <td>Price</td>
+
+        </tr>
+        {% for i in p_s%}
+          <tr>
+              <td>{{i.name}}</td>
+              <td>{{i.large}}</td>
+
+          </tr>
+        {% endfor %}
+      </table>
+  <h1>Dinner</h1>
+    <table class="table table-condensed">
+      <tr>
+            <td>Item</td>
+            <td>Small</td>
+            <td>Large</td>
+            <td></td>
+      </tr>
+      {% for i in dinner%}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.small}}</td>
+            <td>{{i.large}}</td>
+
+        </tr>
+      {% endfor %}
+    </table>
+
+<div class="x">
+  <a href="{% url 'addtocart'  %}"><button type="button" name="button">Order</button></a>
+  <a href="{% url 'logout' %}">  <button type="button" name="button">Logout</button></a>
+</div>
+
+</div>
+{%endblock%}
